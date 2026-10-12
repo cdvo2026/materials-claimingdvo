@@ -10,147 +10,329 @@
 
   <style>
     :root {
-      --blue:#0a5493; --navy:#084375; --accent:#7dd4e6;
-      --bg:#f2f7fb; --border:#dbe6ef; --muted:#63788b;
-      --green:#137c45; --red:#b52f36;
+      --blue: #0a5493;
+      --navy: #084375;
+      --accent: #7dd4e6;
+      --bg: #f2f7fb;
+      --border: #dbe6ef;
+      --muted: #63788b;
+      --green: #137c45;
+      --red: #b52f36;
     }
-    * { box-sizing:border-box; }
+
+    * { box-sizing: border-box; }
+
     body {
-      margin:0; background:var(--bg); color:#18344a;
-      font-family:Arial,Helvetica,sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: #18344a;
+      font-family: Arial, Helvetica, sans-serif;
     }
+
     header {
-      background:var(--navy); color:white; padding:18px 16px;
-      border-bottom:5px solid var(--accent);
+      background: var(--navy);
+      color: white;
+      padding: 18px 16px;
+      border-bottom: 5px solid var(--accent);
     }
-    .header-inner, main { width:min(780px,100%); margin:auto; }
-    .brand { font-size:23px; font-weight:800; letter-spacing:1px; }
-    .subtitle { margin-top:5px; font-size:13px; color:#d7f5fc; }
-    main { padding:18px 14px 30px; }
+
+    .header-inner, main {
+      width: min(780px, 100%);
+      margin: auto;
+    }
+
+    .brand {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      margin-top: 5px;
+      font-size: 13px;
+      color: #d7f5fc;
+    }
+
+    main { padding: 18px 14px 30px; }
+
     .card {
-      background:white; border:1px solid var(--border); border-radius:15px;
-      padding:19px; margin-bottom:15px;
-      box-shadow:0 4px 14px rgba(8,67,117,.05);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 19px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 14px rgba(8, 67, 117, .05);
     }
-    h2 { font-size:18px; color:var(--navy); margin:0 0 13px; }
-    p { line-height:1.5; }
-    .muted { color:var(--muted); font-size:13px; line-height:1.5; }
+
+    h2 {
+      font-size: 18px;
+      color: var(--navy);
+      margin: 0 0 13px;
+    }
+
+    p { line-height: 1.5; }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
     label {
-      display:block; font-size:13px; font-weight:700; margin-bottom:7px;
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
     }
+
     input, select {
-      display:block; width:100%; padding:13px;
-      border:1px solid #bdcedd; border-radius:9px;
-      background:white; color:#18344a; font-size:15px;
+      display: block;
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #bdcedd;
+      border-radius: 9px;
+      background: white;
+      color: #18344a;
+      font-size: 15px;
     }
+
     button {
-      border:0; border-radius:10px; padding:13px 16px;
-      font-size:14px; font-weight:700; cursor:pointer;
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
     }
-    button:active { transform:scale(.98); }
-    button:disabled { opacity:.5; cursor:not-allowed; }
-    .primary { background:var(--blue); color:white; }
-    .secondary { background:#e8f5fa; color:var(--navy); }
-    .danger { background:#fff0f0; color:var(--red); }
-    .full { width:100%; margin-top:10px; }
-    .hidden { display:none !important; }
+
+    button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    .primary { background: var(--blue); color: white; }
+    .secondary { background: #e8f5fa; color: var(--navy); }
+    .danger { background: #fff0f0; color: var(--red); }
+    .full { width: 100%; margin-top: 10px; }
+    .hidden { display: none !important; }
+
     .notice {
-      padding:13px 14px; margin-top:12px; border-radius:10px;
-      font-size:14px; line-height:1.5; overflow-wrap:anywhere;
-      white-space:pre-line;
+      padding: 13px 14px;
+      margin-top: 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+      white-space: pre-line;
     }
-    .info { background:#edf8fc; color:var(--navy); }
-    .success { background:#eaf8ef; color:#176c3c; }
-    .error { background:#fff0f0; color:#9e2525; }
+
+    .info { background: #edf8fc; color: var(--navy); }
+    .success { background: #eaf8ef; color: #176c3c; }
+    .error { background: #fff0f0; color: #9e2525; }
+
     .selected-item {
-      color:var(--blue); font-size:17px; font-weight:800;
-      margin-top:10px; overflow-wrap:anywhere;
+      color: var(--blue);
+      font-size: 17px;
+      font-weight: 800;
+      margin-top: 10px;
+      overflow-wrap: anywhere;
     }
+
     .counter {
-      display:grid; grid-template-columns:1fr 1fr;
-      gap:10px; margin-top:15px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 15px;
     }
+
     .counter-box {
-      background:#edf7fc; border:1px solid #d6eaf4;
-      border-radius:11px; text-align:center; padding:12px 8px;
+      background: #edf7fc;
+      border: 1px solid #d6eaf4;
+      border-radius: 11px;
+      text-align: center;
+      padding: 12px 8px;
     }
-    .counter-number { font-size:26px; color:var(--navy); font-weight:800; }
-    .counter-label { font-size:12px; color:var(--muted); margin-top:4px; }
+
+    .counter-number {
+      font-size: 26px;
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .counter-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
     .mode-row {
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px; margin-bottom:14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
     }
-    .mode-label { color:var(--muted); font-size:12px; font-weight:700; }
-    .camera-controls {
-      margin-top:14px; padding:13px; border:1px solid var(--border);
-      border-radius:11px; background:#f8fbfd;
+
+    .mode-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
     }
-    .camera-status {
-      font-size:12px; color:var(--muted); margin-top:7px; line-height:1.4;
-    }
+
     #reader {
-      width:100%; max-width:470px; margin:14px auto 6px;
-      overflow:hidden; border-radius:14px; min-height:0;
+      width: 100%;
+      max-width: 470px;
+      margin: 14px auto 6px;
+      overflow: hidden;
+      border-radius: 14px;
     }
-    #reader video { border-radius:12px; object-fit:cover; }
-    #reader__dashboard_section_csr button,
-    #reader__dashboard_section_csr select { margin:5px; }
-    .scan-result { padding:12px 0; border-bottom:1px solid #edf1f5; }
-    .scan-result:last-child { border-bottom:0; }
+
+    #reader video {
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .scan-result {
+      padding: 12px 0;
+      border-bottom: 1px solid #edf1f5;
+    }
+
+    .scan-result:last-child { border-bottom: 0; }
+
     .result-name {
-      font-size:14px; font-weight:800; overflow-wrap:anywhere;
+      font-size: 14px;
+      font-weight: 800;
+      overflow-wrap: anywhere;
     }
+
     .result-detail {
-      font-size:12px; color:var(--muted); margin-top:4px;
-      line-height:1.4; overflow-wrap:anywhere;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
     }
-    .result-ok { color:var(--green); }
-    .result-error { color:var(--red); }
-    .empty-history { font-size:13px; color:var(--muted); padding:10px 0; }
-    footer { text-align:center; font-size:12px; color:var(--muted); padding:5px 15px 25px; }
-    body.focus-mode { background:#eef5fa; }
-    .focus-mode header, .focus-mode footer { display:none; }
-    .focus-mode main { width:min(680px,100%); padding-top:14px; }
+
+    .result-ok { color: var(--green); }
+    .result-error { color: var(--red); }
+
+    .empty-history {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 10px 0;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      padding: 5px 15px 25px;
+    }
+
+    /* FOCUS MODE */
+    body.focus-mode {
+      background: #eef5fa;
+    }
+
+    .focus-mode header,
+    .focus-mode footer {
+      display: none;
+    }
+
+    .focus-mode main {
+      width: min(680px, 100%);
+      padding-top: 10px;
+    }
+
     .focus-mode #materialCard {
-      padding:15px 18px; margin-bottom:10px; border-top:4px solid var(--accent);
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border-top: 4px solid var(--accent);
     }
+
     .focus-mode #materialCard h2,
     .focus-mode #materialCard .muted,
     .focus-mode #counterPanel,
     .focus-mode #historyCard,
-    .focus-mode #sessionCard { display:none !important; }
-    .focus-mode #scannerCard {
-      min-height:70vh; padding:20px; border:2px solid #d6eaf4;
-      box-shadow:0 10px 35px rgba(8,67,117,.09);
-      display:flex; flex-direction:column; justify-content:flex-start;
+    .focus-mode #sessionCard {
+      display: none !important;
     }
-    .focus-mode #scannerHeading {
-      text-align:center; font-size:22px; margin:7px 0 3px;
-    }
-    .focus-mode #focusMaterialLabel {
-      display:block; text-align:center; color:var(--blue);
-      font-weight:800; font-size:16px; line-height:1.5;
-      overflow-wrap:anywhere; margin:4px 0 10px;
-    }
-    #focusMaterialLabel { display:none; }
-    .focus-mode #reader { max-width:480px; margin:14px auto; }
-    .focus-mode #scannerMessage {
-      font-size:16px; font-weight:700; text-align:center;
-    }
-    .focus-mode #scannerMessage .notice { font-size:16px; padding:17px 14px; }
-    .focus-mode #startButton,
-    .focus-mode #stopButton { max-width:480px; margin-left:auto; margin-right:auto; min-height:48px; }
-    .focus-mode #modeButton { background:var(--navy); color:white; }
 
-    @media (max-width:480px) {
-      .card { padding:16px; }
-      .focus-mode main { padding:8px; }
-      .focus-mode #materialCard { padding:12px; border-radius:12px; }
-      .focus-mode #scannerCard {
-        min-height:calc(100dvh - 95px); padding:14px; border-radius:14px;
+    .focus-mode #scannerCard {
+      min-height: 75vh;
+      padding: 20px;
+      border: 2px solid #d6eaf4;
+      box-shadow: 0 10px 35px rgba(8, 67, 117, .09);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .focus-mode #scannerHeading {
+      text-align: center;
+      font-size: 22px;
+      margin: 7px 0 3px;
+    }
+
+    .focus-mode #focusMaterialLabel {
+      display: block;
+      text-align: center;
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+      margin: 4px 0 10px;
+    }
+
+    #focusMaterialLabel { display: none; }
+
+    .focus-mode #reader {
+      max-width: 480px;
+      margin: 14px auto;
+    }
+
+    .focus-mode #scannerMessage {
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .focus-mode #scannerMessage .notice {
+      font-size: 16px;
+      padding: 17px 14px;
+    }
+
+    .focus-mode #startButton,
+    .focus-mode #stopButton {
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      min-height: 48px;
+    }
+
+    .focus-mode #modeButton {
+      background: var(--navy);
+      color: white;
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 16px; }
+
+      .focus-mode main { padding: 8px; }
+
+      .focus-mode #materialCard {
+        padding: 12px;
+        border-radius: 12px;
       }
-      .focus-mode #scannerHeading { font-size:20px; }
-      .focus-mode #reader { margin:12px auto; }
+
+      .focus-mode #scannerCard {
+        min-height: calc(100dvh - 90px);
+        padding: 14px;
+        border-radius: 14px;
+      }
+
+      .focus-mode #scannerHeading { font-size: 20px; }
+      .focus-mode #reader { margin: 12px auto; }
     }
   </style>
 </head>
@@ -159,35 +341,44 @@
 <header>
   <div class="header-inner">
     <div class="brand">CEREBRO DAVAO</div>
-    <div class="subtitle">March 2027 MTLE · Cerebro Davao</div>
+    <div class="subtitle">March 2027 MTLE · Materials Claiming</div>
   </div>
 </header>
 
 <main>
+  <!-- LOGIN -->
   <section id="loginPanel" class="card">
     <h2>Operator Login</h2>
     <p class="muted">Log in to begin scanning and recording material claims.</p>
+
     <form id="loginForm">
       <label for="pinInput">Operator PIN</label>
       <input id="pinInput" type="password" placeholder="Enter PIN"
              autocomplete="current-password" required>
       <button id="loginButton" class="primary full" type="submit">Log In</button>
     </form>
+
     <div id="loginMessage" aria-live="polite"></div>
   </section>
 
+  <!-- CLAIMING APP -->
   <section id="appPanel" class="hidden">
     <div id="materialCard" class="card">
       <div class="mode-row">
         <span class="mode-label">SCANNER DISPLAY</span>
         <button id="modeButton" class="secondary" type="button">Focus Mode</button>
       </div>
+
       <h2>Select Material</h2>
-      <p class="muted">Select one item. Every valid QR scan will claim this item for that student.</p>
+      <p class="muted">
+        Select one item. Each valid QR scan claims this item for that student.
+      </p>
+
       <label for="materialSelect">Item to Claim</label>
       <select id="materialSelect" disabled>
         <option value="">Loading materials…</option>
       </select>
+
       <div class="selected-item" id="selectedItemDisplay">No item selected</div>
 
       <div class="counter" id="counterPanel">
@@ -206,25 +397,18 @@
       <h2 id="scannerHeading">Scan Student QR Codes</h2>
       <div id="focusMaterialLabel"></div>
 
-      <div class="camera-controls">
-        <label for="cameraSelect">Camera</label>
-        <select id="cameraSelect">
-          <option value="">Automatic camera selection</option>
-        </select>
-        <div id="cameraStatus" class="camera-status">
-          Start the scanner to detect available cameras.
-        </div>
-      </div>
-
       <button id="startButton" class="primary full" type="button">Start Scanner</button>
       <button id="stopButton" class="secondary full hidden" type="button">Pause Scanner</button>
+
       <div id="reader"></div>
       <div id="scannerMessage" aria-live="polite"></div>
     </div>
 
     <div id="historyCard" class="card">
       <h2>Live Scan History</h2>
-      <div id="history"><div class="empty-history">No students scanned yet.</div></div>
+      <div id="history">
+        <div class="empty-history">No students scanned yet.</div>
+      </div>
       <button id="clearHistoryButton" class="secondary full" type="button">
         Clear On-Screen History
       </button>
@@ -238,9 +422,13 @@
   </section>
 </main>
 
-<footer>Cerebro Davao · March 2027 MTLE</footer>
+<footer>Cerebro Davao · Materials Claiming System</footer>
 
 <script>
+  // =====================================================
+  // CONFIGURATION
+  // =====================================================
+
   const API_URL =
     "https://script.google.com/macros/s/AKfycby7LQFCcfiR8NEVttdk19WGqsUvwoP2iaU7JUEZrWkAV-aP0LKQIGN3dedd-E8Sm8yQ/exec";
 
@@ -248,28 +436,29 @@
   let materials = [];
   let scanner = null;
   let cameraRunning = false;
-  let cameraSwitching = false;
+  let processingScan = false;
   let audioContext = null;
   let successfulClaims = 0;
   let unsuccessfulScans = 0;
 
-  // Separate locks per student/material. One student's request won't block another.
-  const inFlightScans = new Set();
-
-  // Short per-QR frame debounce, not a global scanner cooldown.
-  const recentScans = new Map();
-  const SCAN_DEBOUNCE_MS = 1200;
-
+  // Continuous scan queue and duplicate-frame protection.
+  let scanQueue = [];
+  let queuedNames = new Set();
+  let activeScanKeys = new Set();
+  let recentScans = new Map();
   let recentHistory = [];
-  let cameraList = [];
-  let activeCameraId = "";
 
   const $ = id => document.getElementById(id);
+
+  // =====================================================
+  // UI HELPERS
+  // =====================================================
 
   function message(id, text, type = "info") {
     const el = $(id);
     el.replaceChildren();
     if (!text) return;
+
     const div = document.createElement("div");
     div.className = "notice " + type;
     div.textContent = text;
@@ -290,17 +479,30 @@
     return $("materialSelect").value;
   }
 
+  // =====================================================
+  // FOCUS / STANDARD MODE
+  // =====================================================
+
   $("modeButton").addEventListener("click", () => {
     const enabled = document.body.classList.toggle("focus-mode");
+
     $("modeButton").textContent = enabled ? "Standard Mode" : "Focus Mode";
-    $("focusMaterialLabel").textContent = selectedMaterial() || "Select a material above";
-    $("scannerHeading").textContent = enabled ? "Scan Student QR" : "Scan Student QR Codes";
+    $("focusMaterialLabel").textContent =
+      selectedMaterial() || "Select a material above";
+
+    $("scannerHeading").textContent =
+      enabled ? "Scan Student QR" : "Scan Student QR Codes";
   });
+
+  // =====================================================
+  // SUCCESS BEEP
+  // =====================================================
 
   async function prepareAudio() {
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       if (!AudioCtx) return;
+
       if (!audioContext) audioContext = new AudioCtx();
       if (audioContext.state === "suspended") await audioContext.resume();
     } catch (_) {}
@@ -309,16 +511,19 @@
   function successBeep() {
     try {
       if (!audioContext || audioContext.state !== "running") return;
+
       const oscillator = audioContext.createOscillator();
       const gain = audioContext.createGain();
 
       oscillator.type = "sine";
       oscillator.frequency.setValueAtTime(1000, audioContext.currentTime);
       oscillator.frequency.setValueAtTime(1350, audioContext.currentTime + 0.09);
+
       gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.25, audioContext.currentTime + 0.015);
       gain.gain.setValueAtTime(0.25, audioContext.currentTime + 0.11);
       gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.19);
+
       oscillator.connect(gain);
       gain.connect(audioContext.destination);
       oscillator.start();
@@ -326,13 +531,23 @@
     } catch (_) {}
   }
 
+  // =====================================================
   // JSONP API
+  // =====================================================
+
   function api(action, params = {}) {
     return new Promise((resolve, reject) => {
-      const callbackName = "cerebro_" + Date.now() + "_" +
+      const callbackName =
+        "cerebro_" + Date.now() + "_" +
         Math.random().toString(36).slice(2);
+
       const script = document.createElement("script");
-      const query = new URLSearchParams({ action, callback: callbackName, ...params });
+      const query = new URLSearchParams({
+        action,
+        callback: callbackName,
+        ...params
+      });
+
       let finished = false;
 
       function cleanup() {
@@ -340,27 +555,35 @@
         finished = true;
         clearTimeout(timeout);
         script.remove();
-        try { delete window[callbackName]; }
-        catch (_) { window[callbackName] = undefined; }
+
+        try {
+          delete window[callbackName];
+        } catch (_) {
+          window[callbackName] = undefined;
+        }
       }
 
       const timeout = setTimeout(() => {
         cleanup();
-        reject(new Error("Server timeout. Check your connection."));
+        reject(new Error("Server timeout. Check your internet connection."));
       }, 25000);
 
       window[callbackName] = data => {
         cleanup();
+
         if (!data || typeof data !== "object") {
           reject(new Error("Invalid server response."));
           return;
         }
+
         resolve(data);
       };
 
       script.onerror = () => {
         cleanup();
-        reject(new Error("Could not reach the server. Check the Apps Script URL and deployment."));
+        reject(new Error(
+          "Could not reach the server. Check the Apps Script URL and deployment."
+        ));
       };
 
       script.src = API_URL + "?" + query.toString();
@@ -368,22 +591,31 @@
     });
   }
 
-  // LOGIN
+  // =====================================================
+  // LOGIN AND INITIALIZATION
+  // =====================================================
+
   $("loginForm").addEventListener("submit", async event => {
     event.preventDefault();
+
     setButtonBusy("loginButton", true, "Log In", "Logging in…");
     message("loginMessage", "");
 
     try {
-      const result = await api("login", { pin: $("pinInput").value });
+      const result = await api("login", {
+        pin: $("pinInput").value
+      });
+
       if (!result.success) {
         message("loginMessage", result.message || "Login failed.", "error");
         return;
       }
 
       token = result.token;
+
       $("loginPanel").classList.add("hidden");
       $("appPanel").classList.remove("hidden");
+
       await prepareAudio();
       await initializeApp();
     } catch (error) {
@@ -396,12 +628,15 @@
   async function initializeApp() {
     try {
       const result = await api("init", { token });
+
       if (!result.success) {
         handleSessionError(result);
         return;
       }
+
       materials = result.materials || [];
       populateMaterials();
+
       $("connectionStatus").textContent =
         "Connected · " + result.studentCount + " students in masterlist.";
     } catch (error) {
@@ -412,6 +647,7 @@
   function populateMaterials() {
     const select = $("materialSelect");
     select.replaceChildren();
+
     const placeholder = document.createElement("option");
     placeholder.value = "";
     placeholder.textContent = "— Select an item to distribute —";
@@ -420,21 +656,28 @@
     materials.forEach(group => {
       const optgroup = document.createElement("optgroup");
       optgroup.label = group.group;
+
       group.items.forEach(item => {
         const option = document.createElement("option");
         option.value = item;
         option.textContent = item;
         optgroup.appendChild(option);
       });
+
       select.appendChild(optgroup);
     });
+
     select.disabled = false;
   }
 
   $("materialSelect").addEventListener("change", () => {
     const item = selectedMaterial();
+
     $("selectedItemDisplay").textContent = item || "No item selected";
     $("focusMaterialLabel").textContent = item || "Select a material above";
+
+    // Clear the brief frame cooldown when the material changes.
+    recentScans.clear();
 
     if (item) {
       message("scannerMessage", "Ready to distribute: " + item, "success");
@@ -450,58 +693,12 @@
     }
   }
 
+  // =====================================================
   // CAMERA SCANNER
+  // =====================================================
+
   $("startButton").addEventListener("click", startCamera);
   $("stopButton").addEventListener("click", stopCamera);
-  $("cameraSelect").addEventListener("change", handleCameraChange);
-
-  async function refreshCameras() {
-    if (typeof Html5Qrcode === "undefined") {
-      throw new Error("QR scanner library failed to load. Refresh and try again.");
-    }
-
-    const cameras = await Html5Qrcode.getCameras();
-    cameraList = cameras || [];
-
-    const select = $("cameraSelect");
-    const previousValue = select.value;
-    select.replaceChildren();
-
-    const autoOption = document.createElement("option");
-    autoOption.value = "";
-    autoOption.textContent = "Automatic camera selection";
-    select.appendChild(autoOption);
-
-    cameraList.forEach((camera, index) => {
-      const option = document.createElement("option");
-      option.value = camera.id;
-      option.textContent = camera.label || ("Camera " + (index + 1));
-      select.appendChild(option);
-    });
-
-    // Keep the currently active camera selected if possible.
-    const currentId = activeCameraId || previousValue;
-    if (currentId && cameraList.some(c => c.id === currentId)) {
-      select.value = currentId;
-    } else {
-      select.value = "";
-    }
-
-    $("cameraStatus").textContent = cameraList.length
-      ? cameraList.length + " camera(s) detected. You can switch cameras anytime."
-      : "No cameras detected.";
-  }
-
-  function getPreferredCameraId() {
-    const selectedId = $("cameraSelect").value;
-    if (selectedId) return selectedId;
-
-    const rearCamera = cameraList.find(camera =>
-      /back|rear|environment|world/i.test(camera.label || "")
-    );
-
-    return rearCamera ? rearCamera.id : (cameraList[0] ? cameraList[0].id : "");
-  }
 
   async function startCamera() {
     if (!selectedMaterial()) {
@@ -510,86 +707,61 @@
       return;
     }
 
-    if (cameraRunning || cameraSwitching) return;
+    if (cameraRunning) return;
+
     await prepareAudio();
 
     if (typeof Html5Qrcode === "undefined") {
-      message("scannerMessage", "QR scanner library failed to load. Refresh and try again.", "error");
+      message(
+        "scannerMessage",
+        "QR scanner library failed to load. Refresh and try again.",
+        "error"
+      );
       return;
     }
-
-    $("startButton").disabled = true;
-    message("scannerMessage", "Opening camera…", "info");
 
     try {
       if (!scanner) scanner = new Html5Qrcode("reader");
 
-      // Request permission first if the browser has not exposed camera devices yet.
-      try {
-        await refreshCameras();
-      } catch (_) {
-        // Continue with facingMode fallback; start() will report permission errors.
-      }
+      message("scannerMessage", "Opening camera…", "info");
 
-      const cameraId = getPreferredCameraId();
-      const cameraConfig = {
-        fps: 15,
-        qrbox: (viewWidth, viewHeight) => {
-          const size = Math.floor(Math.min(viewWidth, viewHeight, 300) * 0.82);
-          return { width: size, height: size };
+      await scanner.start(
+        { facingMode: "environment" },
+        {
+          fps: 15,
+          qrbox: { width: 250, height: 250 },
+          aspectRatio: 1
         },
-        aspectRatio: 1
-      };
-
-      if (cameraId) {
-        await scanner.start(
-          cameraId,
-          cameraConfig,
-          decodedText => processScannedName(decodedText),
-          () => {}
-        );
-        activeCameraId = cameraId;
-      } else {
-        await scanner.start(
-          { facingMode: "environment" },
-          cameraConfig,
-          decodedText => processScannedName(decodedText),
-          () => {}
-        );
-      }
+        decodedText => {
+          // Immediately queue each decoded QR.
+          processScannedName(decodedText);
+        },
+        () => {
+          // Normal frame-by-frame misses are ignored.
+        }
+      );
 
       cameraRunning = true;
       $("startButton").classList.add("hidden");
       $("stopButton").classList.remove("hidden");
 
-      // Permission granted: refresh labels and identify the actual active camera.
-      try {
-        await refreshCameras();
-        const video = $("reader").querySelector("video");
-        const track = video && video.srcObject && video.srcObject.getVideoTracks()[0];
-        const actualId = track && track.getSettings ? track.getSettings().deviceId : "";
-
-        if (actualId && cameraList.some(c => c.id === actualId)) {
-          activeCameraId = actualId;
-          $("cameraSelect").value = actualId;
-        } else if (activeCameraId) {
-          $("cameraSelect").value = activeCameraId;
-        }
-      } catch (_) {}
-
-      message("scannerMessage", "Scanner active · " + selectedMaterial(), "success");
-    } catch (error) {
-      cameraRunning = false;
-      $("startButton").classList.remove("hidden");
-      $("stopButton").classList.add("hidden");
       message(
         "scannerMessage",
-        "Camera could not start. Allow camera access and use the HTTPS website. " +
-        (error.message || ""),
+        "Scanner active · " + selectedMaterial(),
+        "success"
+      );
+    } catch (error) {
+      cameraRunning = false;
+
+      message(
+        "scannerMessage",
+        "Camera error: " + (error.name || "UnknownError") +
+        " — " + (error.message || String(error)) +
+        ". Allow camera access and use the HTTPS website.",
         "error"
       );
-    } finally {
-      $("startButton").disabled = false;
+
+      console.error("Cerebro camera error:", error);
     }
   }
 
@@ -603,60 +775,90 @@
     cameraRunning = false;
     $("startButton").classList.remove("hidden");
     $("stopButton").classList.add("hidden");
-    $("startButton").disabled = false;
   }
 
-  async function handleCameraChange() {
-    const requestedId = $("cameraSelect").value;
+  // =====================================================
+  // CONTINUOUS SCAN QUEUE
+  // =====================================================
 
-    if (!cameraRunning) {
-      activeCameraId = requestedId;
-      $("cameraStatus").textContent = requestedId
-        ? "Selected camera will be used when scanning starts."
-        : "Automatic camera selection is enabled.";
-      return;
-    }
-
-    if (cameraSwitching) return;
-    cameraSwitching = true;
-    $("cameraSelect").disabled = true;
-
-    try {
-      await stopCamera();
-      activeCameraId = requestedId;
-      await startCamera();
-    } finally {
-      cameraSwitching = false;
-      $("cameraSelect").disabled = false;
-    }
-  }
-
-  // AUTOMATIC CLAIM REGISTRATION
   async function processScannedName(rawName) {
-    const name = String(rawName || "").trim().replace(/\s+/g, " ");
+    const name = String(rawName || "").trim();
     const item = selectedMaterial();
+
     if (!name || !item) return;
 
-    const key = item.toLowerCase() + "|" + name.toLowerCase();
+    const normalizedName = name.replace(/\s+/g, " ").toLowerCase();
+    const key = item.toLowerCase() + "|" + normalizedName;
     const now = Date.now();
 
-    // Ignore duplicate frames for this exact QR only.
-    // A different student's QR can be submitted immediately.
-    if (inFlightScans.has(key)) return;
-    const lastTime = recentScans.get(key) || 0;
-    if (now - lastTime < SCAN_DEBOUNCE_MS) return;
+    // Briefly suppress repeated camera frames of the same QR.
+    // Different students can be queued immediately.
+    const lastSeen = recentScans.get(key) || 0;
+    if (now - lastSeen < 1200) return;
 
     recentScans.set(key, now);
-    inFlightScans.add(key);
 
-    // Keep the map small.
-    for (const [scanKey, time] of recentScans.entries()) {
-      if (now - time > 30000) recentScans.delete(scanKey);
+    // Prevent the same student/item from being submitted
+    // multiple times while waiting in the queue.
+    if (queuedNames.has(key) || activeScanKeys.has(key)) return;
+
+    queuedNames.add(key);
+    activeScanKeys.add(key);
+
+    scanQueue.push({ name, item, key });
+
+    updateQueueStatus();
+    processScanQueue();
+  }
+
+  function updateQueueStatus() {
+    if (scanQueue.length > 0) {
+      message(
+        "scannerMessage",
+        "Processing claims… " + scanQueue.length +
+        " student(s) waiting.",
+        "info"
+      );
     }
+  }
 
-    message("scannerMessage", "Registering " + name + "…", "info");
+  async function processScanQueue() {
+    if (processingScan) return;
+
+    processingScan = true;
 
     try {
+      while (scanQueue.length > 0) {
+        const scan = scanQueue.shift();
+
+        try {
+          await registerQueuedStudent(scan);
+        } finally {
+          queuedNames.delete(scan.key);
+          activeScanKeys.delete(scan.key);
+        }
+      }
+    } finally {
+      processingScan = false;
+
+      if (scanQueue.length > 0) {
+        processScanQueue();
+      } else if (cameraRunning) {
+        message(
+          "scannerMessage",
+          "✓ Scanner active · " + selectedMaterial(),
+          "success"
+        );
+      }
+    }
+  }
+
+  async function registerQueuedStudent(scan) {
+    const { name, item, key } = scan;
+
+    try {
+      message("scannerMessage", "Registering " + name + "…", "info");
+
       const result = await api("claim", {
         token,
         name,
@@ -669,9 +871,13 @@
 
         const reason = result.message || "Claim was not registered.";
         addHistory(name, item, reason, false);
-        message("scannerMessage", name + " · " + reason, "error");
 
-        if (result.sessionExpired) handleSessionError(result);
+        message("scannerMessage", "✕ " + name + " · " + reason, "error");
+
+        if (result.sessionExpired) {
+          handleSessionError(result);
+        }
+
         return;
       }
 
@@ -680,6 +886,7 @@
       successBeep();
 
       const confirmedName = result.studentName || name;
+
       addHistory(
         confirmedName,
         item,
@@ -695,19 +902,32 @@
     } catch (error) {
       unsuccessfulScans++;
       updateCounters();
+
       addHistory(name, item, error.message, false);
-      message("scannerMessage", error.message, "error");
-    } finally {
-      inFlightScans.delete(key);
+      message(
+        "scannerMessage",
+        "Connection error for " + name + ": " + error.message,
+        "error"
+      );
+
+      // Allow a future attempt if the request failed.
+      recentScans.delete(key);
     }
   }
 
+  // =====================================================
   // LIVE HISTORY
+  // =====================================================
+
   function addHistory(name, item, detail, success) {
     recentHistory.unshift({
-      name, item, detail, success,
+      name,
+      item,
+      detail,
+      success,
       time: new Date().toLocaleTimeString()
     });
+
     recentHistory = recentHistory.slice(0, 40);
     renderHistory();
   }
@@ -729,7 +949,8 @@
       wrapper.className = "scan-result";
 
       const name = document.createElement("div");
-      name.className = "result-name " + (record.success ? "result-ok" : "result-error");
+      name.className = "result-name " +
+        (record.success ? "result-ok" : "result-error");
       name.textContent = (record.success ? "✓ " : "✕ ") + record.name;
 
       const detail = document.createElement("div");
@@ -750,7 +971,10 @@
     renderHistory();
   });
 
+  // =====================================================
   // LOGOUT
+  // =====================================================
+
   $("logoutButton").addEventListener("click", logout);
 
   async function logout() {
@@ -759,18 +983,12 @@
     token = "";
     materials = [];
     recentScans.clear();
-    inFlightScans.clear();
-    activeCameraId = "";
-    cameraList = [];
+    scanQueue = [];
+    queuedNames.clear();
+    activeScanKeys.clear();
 
     document.body.classList.remove("focus-mode");
     $("modeButton").textContent = "Focus Mode";
-    $("cameraSelect").replaceChildren();
-
-    const option = document.createElement("option");
-    option.value = "";
-    option.textContent = "Automatic camera selection";
-    $("cameraSelect").appendChild(option);
 
     $("appPanel").classList.add("hidden");
     $("loginPanel").classList.remove("hidden");
