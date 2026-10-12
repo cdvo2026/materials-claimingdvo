@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a5493">
+
+  <title>Cerebro Davao | Materials Claiming</title>
+
+  <script src="https://unpkg.com/html5-qrcode"></script>
+
+  <style>
+    :root {
+      --blue: #0a5493;
+      --navy: #084375;
+      --accent: #7dd4e6;
+      --white: #ffffff;
+      --background: #f3f8fc;
+      --border: #d8e5ef;
+      --muted: #62788b;
+      --success: #16834a;
+      --danger: #bd3434;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: #17334a;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 22px 16px;
+      border-bottom: 5px solid var(--accent);
+    }
+
+    .header-inner {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .brand {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      margin-top: 7px;
+      color: #d7f5fc;
+      font-size: 14px;
+    }
+
+    main {
+      width: min(850px, 100%);
+      margin: 22px auto;
+      padding: 0 14px 35px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 21px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 15px rgba(8, 67, 117, 0.05);
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: 19px;
+      margin: 0 0 15px;
+    }
+
+    h3 {
+      color: var(--blue);
+      font-size: 15px;
+      margin: 20px 0 9px;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      border: 1px solid #bdcfdd;
+      border-radius: 9px;
+      padding: 13px;
+      font-size: 16px;
+      outline: none;
+      background: white;
+    }
+
+    input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(10, 84, 147, 0.1);
+    }
+
+    button {
+      cursor: pointer;
+      border: 0;
+      border-radius: 9px;
+      padding: 13px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      transition: opacity 0.15s;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .primary {
+      background: var(--blue);
+      color: white;
+    }
+
+    .secondary {
+      background: #e8f5fa;
+      color: var(--navy);
+      border: 1px solid #c5e8f1;
+    }
+
+    .danger {
+      background: #fff0f0;
+      color: var(--danger);
+      border: 1px solid #f0caca;
+    }
+
+    .full {
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    .row {
+      display: flex;
+      gap: 9px;
+      align-items: stretch;
+    }
+
+    .row > * {
+      min-width: 0;
+    }
+
+    .row input {
+      flex: 1;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .notice {
+      border-radius: 9px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .notice.info {
+      background: #edf8fc;
+      border: 1px solid #c8eaf3;
+      color: var(--navy);
+    }
+
+    .notice.success {
+      background: #eaf8ef;
+      border: 1px solid #c1e8ce;
+      color: #176c3c;
+    }
+
+    .notice.error {
+      background: #fff0f0;
+      border: 1px solid #f0caca;
+      color: #9e2525;
+    }
+
+    #reader {
+      width: 100%;
+      max-width: 480px;
+      margin: 12px auto;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .student-name {
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--navy);
+      overflow-wrap: anywhere;
+    }
+
+    .group-title {
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .material {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid #edf2f6;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+
+    .material:last-child {
+      border-bottom: 0;
+    }
+
+    .material input {
+      width: 19px;
+      height: 19px;
+      flex-shrink: 0;
+      margin: 1px 0 0;
+      accent-color: var(--blue);
+    }
+
+    .material.disabled {
+      color: #8a969f;
+      cursor: not-allowed;
+    }
+
+    .claimed-tag {
+      display: inline-block;
+      margin-left: 5px;
+      color: var(--success);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .history-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #edf2f6;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 5px 15px 25px;
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        padding: 16px;
+      }
+
+      .row {
+        flex-direction: column;
+      }
+
+      .row button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">CEREBRO DAVAO</div>
+      <div class="subtitle">Review smart. Claim with confidence.</div>
+    </div>
+  </header>
+
+  <main>
+    <!-- LOGIN -->
+    <section id="loginPanel" class="card">
+      <h2>Operator Login</h2>
+      <p class="muted">
+        Enter the authorized operator PIN to access the materials claiming system.
+      </p>
+
+      <form id="loginForm">
+        <label for="pinInput">Operator PIN</label>
+        <input
+          id="pinInput"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Enter operator PIN"
+          required
+        >
+
+        <button id="loginButton" class="primary full" type="submit">
+          Log In
+        </button>
+      </form>
+
+      <div id="loginMessage" aria-live="polite"></div>
+    </section>
+
+    <!-- APP -->
+    <section id="appPanel" class="hidden">
+      <div class="card">
+        <h2>Scan Student QR Code</h2>
+        <p class="muted">
+          Allow camera access, then scan the QR code containing the student's name.
+        </p>
+
+        <button id="startCameraButton" class="primary full" type="button">
+          Start Camera Scanner
+        </button>
+
+        <button id="stopCameraButton" class="secondary full hidden" type="button">
+          Stop Camera
+        </button>
+
+        <div id="reader"></div>
+
+        <div id="scanMessage" aria-live="polite"></div>
+
+        <div class="notice info">
+          If the camera does not work, enter the student's name manually below.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Find Student</h2>
+
+        <form id="studentForm">
+          <label for="studentInput">Student's Full Name</label>
+
+          <div class="row">
+            <input
+              id="studentInput"
+              type="text"
+              placeholder="Enter the name shown in the masterlist"
+              autocomplete="off"
+              required
+            >
+
+            <button id="findButton" class="primary" type="submit">
+              Find Student
+            </button>
+          </div>
+        </form>
+
+        <div id="studentMessage" aria-live="polite"></div>
+      </div>
+
+      <div id="claimPanel" class="card hidden">
+        <h2>Materials Claiming</h2>
+
+        <div id="studentNameDisplay" class="student-name"></div>
+        <p id="studentClaimSummary" class="muted"></p>
+
+        <div id="materialsContainer"></div>
+
+        <div id="claimMessage" aria-live="polite"></div>
+
+        <button id="submitClaimsButton" class="primary full" type="button">
+          Confirm Claim
+        </button>
+
+        <button id="anotherStudentButton" class="secondary full" type="button">
+          Scan / Find Another Student
+        </button>
+      </div>
+
+      <div class="card">
+        <h2>Session Information</h2>
+        <div id="sessionInfo" class="muted">Loading…</div>
+
+        <button id="logoutButton" class="danger full" type="button">
+          Log Out
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Cerebro Davao · Materials Claiming System
+  </footer>
+
+  <script>
+    // =================================================
+    // CONFIGURATION
+    // =================================================
+
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbwVVUWyaugKftn0_2gECGMAusSXP0RgbSjoZLZxe4lTwJoTcS3weXNp5Jibb6FnvhZL6/exec";
+
+    let sessionToken = "";
+    let currentStudent = "";
+    let previousClaims = [];
+    let materialGroups = [];
+    let scanner = null;
+    let cameraRunning = false;
+    let requestInProgress = false;
+
+    // =================================================
+    // ELEMENTS
+    // =================================================
+
+    const $ = id => document.getElementById(id);
+
+    function showMessage(elementId, message, type) {
+      const element = $(elementId);
+      element.replaceChildren();
+
+      if (!message) return;
+
+      const notice = document.createElement("div");
+      notice.className = "notice " + (type || "info");
+      notice.textContent = message;
+
+      element.appendChild(notice);
+    }
+
+    function setBusy(buttonId, busy, busyText, normalText) {
+      const button = $(buttonId);
+      button.disabled = busy;
+      button.textContent = busy ? busyText : normalText;
+    }
+
+    // =================================================
+    // JSONP API
+    // =================================================
+
+    function api(action, params = {}) {
+      return new Promise((resolve, reject) => {
+        const callbackName =
+          "cerebroCallback_" +
+          Date.now() +
+          "_" +
+          Math.random().toString(36).slice(2);
+
+        const script = document.createElement("script");
+        const query = new URLSearchParams({
+          action,
+          callback: callbackName,
+          ...params
+        });
+
+        let finished = false;
+
+        const cleanup = () => {
+          if (finished) return;
+          finished = true;
+
+          clearTimeout(timeout);
+          script.remove();
+
+          try {
+            delete window[callbackName];
+          } catch (_) {
+            window[callbackName] = undefined;
+          }
+        };
+
+        const timeout = setTimeout(() => {
+          cleanup();
+          reject(new Error(
+            "The server did not respond. Check your internet connection and deployment URL."
+          ));
+        }, 25000);
+
+        window[callbackName] = data => {
+          cleanup();
+
+          if (!data || typeof data !== "object") {
+            reject(new Error("Invalid response from the server."));
+            return;
+          }
+
+          resolve(data);
+        };
+
+        script.onerror = () => {
+          cleanup();
+          reject(new Error(
+            "Could not connect to the claiming server. Check the Apps Script deployment."
+          ));
+        };
+
+        script.src = API_URL + "?" + query.toString();
+        document.body.appendChild(script);
+      });
+    }
+
+    // =================================================
+    // LOGIN / INITIALIZATION
+    // =================================================
+
+    $("loginForm").addEventListener("submit", async event => {
+      event.preventDefault();
+
+      if (requestInProgress) return;
+      requestInProgress = true;
+
+      setBusy("loginButton", true, "Logging in…", "Log In");
+      showMessage("loginMessage", "", "");
+
+      try {
+        const result = await api("login", {
+          pin: $("pinInput").value
+        });
+
+        if (!result.success) {
+          showMessage("loginMessage", result.message || "Login failed.", "error");
+          return;
+        }
+
+        sessionToken = result.token;
+
+        $("loginPanel").classList.add("hidden");
+        $("appPanel").classList.remove("hidden");
+
+        await initializeApp();
+
+      } catch (error) {
+        showMessage("loginMessage", error.message, "error");
+      } finally {
+        requestInProgress = false;
+        setBusy("loginButton", false, "Logging in…", "Log In");
+      }
+    });
+
+    async function initializeApp() {
+      try {
+        const result = await api("init", {
+          token: sessionToken
+        });
+
+        if (!result.success) {
+          handleApiError(result);
+          return;
+        }
+
+        materialGroups = result.materials || [];
+
+        $("sessionInfo").textContent =
+          "Connected successfully. Students in masterlist: " +
+          result.studentCount;
+
+      } catch (error) {
+        showMessage("studentMessage", error.message, "error");
+      }
+    }
+
+    function handleApiError(result) {
+      if (result && result.sessionExpired) {
+        logout();
+        showMessage(
+          "loginMessage",
+          "Your session expired. Please log in again.",
+          "error"
+        );
+        return;
+      }
+
+      showMessage(
+        "claimMessage",
+        (result && result.message) || "The request could not be completed.",
+        "error"
+      );
+    }
+
+    // =================================================
+    // CAMERA SCANNER
+    // =================================================
+
+    $("startCameraButton").addEventListener("click", async () => {
+      if (cameraRunning) return;
+
+      if (typeof Html5Qrcode === "undefined") {
+        showMessage(
+          "scanMessage",
+          "The QR scanner library could not load. Please use manual name entry.",
+          "error"
+        );
+        return;
+      }
+
+      try {
+        if (!scanner) {
+          scanner = new Html5Qrcode("reader");
+        }
+
+        showMessage("scanMessage", "Requesting camera access…", "info");
+
+        await scanner.start(
+          { facingMode: "environment" },
+          {
+            fps: 10,
+            qrbox: { width: 250, height: 250 },
+            aspectRatio: 1
+          },
+          async decodedText => {
+            if (requestInProgress) return;
+
+            const name = decodedText.trim();
+            if (!name) return;
+
+            await stopCamera();
+            $("studentInput").value = name;
+            await lookupStudent(name);
+          },
+          () => {
+            // Ignore individual frame scan errors.
+          }
+        );
+
+        cameraRunning = true;
+        $("startCameraButton").classList.add("hidden");
+        $("stopCameraButton").classList.remove("hidden");
+        showMessage("scanMessage", "Camera is active. Position the QR code inside the frame.", "success");
+
+      } catch (error) {
+        cameraRunning = false;
+
+        showMessage(
+          "scanMessage",
+          "Camera access failed. Allow camera permission in your browser and ensure this page uses HTTPS. You can still enter the student's name manually.",
+          "error"
+        );
+      }
+    });
+
+    $("stopCameraButton").addEventListener("click", stopCamera);
+
+    async function stopCamera() {
+      if (!scanner || !cameraRunning) {
+        $("startCameraButton").classList.remove("hidden");
+        $("stopCameraButton").classList.add("hidden");
+        return;
+      }
+
+      try {
+        await scanner.stop();
+      } catch (_) {
+        // Scanner may already have stopped.
+      }
+
+      cameraRunning = false;
+      $("startCameraButton").classList.remove("hidden");
+      $("stopCameraButton").classList.add("hidden");
+    }
+
+    // =================================================
+    // STUDENT LOOKUP
+    // =================================================
+
+    $("studentForm").addEventListener("submit", async event => {
+      event.preventDefault();
+
+      const name = $("studentInput").value.trim();
+      if (!name) return;
+
+      await lookupStudent(name);
+    });
+
+    async function lookupStudent(name) {
+      if (requestInProgress) return;
+      requestInProgress = true;
+
+      setBusy("findButton", true, "Searching…", "Find Student");
+      showMessage("studentMessage", "Checking the student masterlist…", "info");
+      showMessage("claimMessage", "", "");
+
+      try {
+        const result = await api("check", {
+          token: sessionToken,
+          name: name
+        });
+
+        if (!result.success) {
+          $("claimPanel").classList.add("hidden");
+          showMessage(
+            "studentMessage",
+            result.message || "Student not found.",
+            "error"
+          );
+          return;
+        }
+
+        currentStudent = result.studentName;
+        previousClaims = result.claimedItems || [];
+        materialGroups = result.materials || materialGroups;
+
+        $("studentInput").value = currentStudent;
+        $("studentNameDisplay").textContent = currentStudent;
+
+        showMessage("studentMessage", "Student found.", "success");
+
+        renderMaterials();
+
+        $("claimPanel").classList.remove("hidden");
+        $("claimPanel").scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      } catch (error) {
+        showMessage("studentMessage", error.message, "error");
+      } finally {
+        requestInProgress = false;
+        setBusy("findButton", false, "Searching…", "Find Student");
+      }
+    }
+
+    // =================================================
+    // MATERIAL CHECKLIST
+    // =================================================
+
+    function wasClaimed(item) {
+      return previousClaims.some(
+        claimed => claimed.toLowerCase() === item.toLowerCase()
+      );
+    }
+
+    function renderMaterials() {
+      const container = $("materialsContainer");
+      container.replaceChildren();
+
+      const summary = previousClaims.length
+        ? "Previously claimed: " + previousClaims.join(", ")
+        : "No materials have been claimed yet.";
+
+      $("studentClaimSummary").textContent = summary;
+
+      materialGroups.forEach(group => {
+        const heading = document.createElement("h3");
+        heading.className = "group-title";
+        heading.textContent = group.group;
+        container.appendChild(heading);
+
+        group.items.forEach(item => {
+          const claimed = wasClaimed(item);
+          const label = document.createElement("label");
+          label.className = "material" + (claimed ? " disabled" : "");
+
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.value = item;
+          checkbox.disabled = claimed;
+          checkbox.className = "material-checkbox";
+
+          const text = document.createElement("span");
+          text.textContent = item;
+
+          if (claimed) {
+            const tag = document.createElement("span");
+            tag.className = "claimed-tag";
+            tag.textContent = "ALREADY CLAIMED";
+            text.appendChild(tag);
+          }
+
+          label.appendChild(checkbox);
+          label.appendChild(text);
+          container.appendChild(label);
+        });
+      });
+
+      $("submitClaimsButton").disabled = false;
+      $("submitClaimsButton").textContent = "Confirm Claim";
+    }
+
+    // =================================================
+    // SUBMIT CLAIM
+    // =================================================
+
+    $("submitClaimsButton").addEventListener("click", async () => {
+      if (!currentStudent || requestInProgress) return;
+
+      const selected = Array.from(
+        document.querySelectorAll(".material-checkbox:checked")
+      ).map(checkbox => checkbox.value);
+
+      if (!selected.length) {
+        showMessage(
+          "claimMessage",
+          "Please select at least one unclaimed material.",
+          "error"
+        );
+        return;
+      }
+
+      const confirmed = window.confirm(
+        "Confirm the following claim for " + currentStudent + "?\n\n" +
+        selected.join("\n")
+      );
+
+      if (!confirmed) return;
+
+      requestInProgress = true;
+      setBusy("submitClaimsButton", true, "Recording claim…", "Confirm Claim");
+      showMessage("claimMessage", "Saving claim…", "info");
+
+      try {
+        const result = await api("claim", {
+          token: sessionToken,
+          name: currentStudent,
+          items: JSON.stringify(selected)
+        });
+
+        if (!result.success) {
+          showMessage(
+            "claimMessage",
+            result.message || "The claim could not be recorded.",
+            "error"
+          );
+
+          // Refresh the claim history in case another operator
+          // recorded an item at the same time.
+          try {
+            const refreshed = await api("check", {
+              token: sessionToken,
+              name: currentStudent
+            });
+
+            if (refreshed.success) {
+              previousClaims = refreshed.claimedItems || [];
+              renderMaterials();
+            }
+          } catch (_) {}
+
+          return;
+        }
+
+        previousClaims = result.claimedItems || previousClaims;
+
+        renderMaterials();
+
+        showMessage(
+          "claimMessage",
+          "Claim recorded successfully for " + result.studentName +
+          ". Newly claimed: " + (result.newlyClaimed || []).join(", "),
+          "success"
+        );
+
+        $("studentClaimSummary").textContent =
+          "Previously or newly claimed: " + previousClaims.join(", ");
+
+      } catch (error) {
+        showMessage("claimMessage", error.message, "error");
+      } finally {
+        requestInProgress = false;
+        setBusy("submitClaimsButton", false, "Recording claim…", "Confirm Claim");
+      }
+    });
+
+    // =================================================
+    // NEXT STUDENT / LOGOUT
+    // =================================================
+
+    $("anotherStudentButton").addEventListener("click", async () => {
+      await stopCamera();
+
+      currentStudent = "";
+      previousClaims = [];
+
+      $("studentInput").value = "";
+      $("claimPanel").classList.add("hidden");
+
+      showMessage("studentMessage", "", "");
+      showMessage("claimMessage", "", "");
+      showMessage("scanMessage", "", "");
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    $("logoutButton").addEventListener("click", logout);
+
+    async function logout() {
+      await stopCamera();
+
+      sessionToken = "";
+      currentStudent = "";
+      previousClaims = [];
+
+      $("appPanel").classList.add("hidden");
+      $("loginPanel").classList.remove("hidden");
+      $("pinInput").value = "";
+
+      showMessage("loginMessage", "You have been logged out.", "info");
+    }
+  </script>
+</body>
+</html>
